@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 
 
-await connect();
+await connect();    //we can remove it as we have added connect() as in the global context in the dbConfig.ts file
 
 export async function POST(request: NextRequest) {
     try {
