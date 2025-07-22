@@ -1,16 +1,12 @@
-/** @type {import("next").NextConfig} */
-
 import {connect} from "@/dbConfig/dbConfig";
 import User from "@/models/userModel.js";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
-import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
+import jwt from "jsonwebtoken";
 
-
-await connect();    //we can remove it as we have added connect() as in the global context in the dbConfig.ts file
-
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest){
+    await connect();
     try {
 
         const reqBody = request.json();

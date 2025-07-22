@@ -1,18 +1,12 @@
-/** @type {import("next").NextConfig} */
-
 import {connect} from "@/dbConfig/dbConfig";
 import User from "@/models/userModel.js";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import mongoose from "mongoose";
+import { sendEmail } from "@/helpers/mailer";
 
-
-
-
+export async function POST(request: NextRequest){
     await connect();
-
-
-    export async function POST(request: NextRequest){
     try {
         const reqBody = await request.json();
         const {username, email, password} = reqBody;
@@ -48,6 +42,12 @@ import mongoose from "mongoose";
         console.log(savedUser);
         console.log("User saved successfully");
         
+        //send verification email
+        await sendEmail({
+            email: savedUser.email,
+            emailType: "VERIFY",
+            userId: savedUser._id
+        })
 
         return NextResponse.json({
             message: "User saved successfully",

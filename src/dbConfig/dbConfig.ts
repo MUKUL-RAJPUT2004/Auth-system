@@ -60,6 +60,7 @@ async function retryConnection() {
     try {
       await mongoose.connect(process.env.MONGO_URI!);
       console.log("MongoDB reconnected successfully");
+      process.exit(0); // Exit after successful reconnection
     } catch (err) {
       console.error(`Retry ${attempt} failed:`, err);
       if (attempt < maxRetries) {
