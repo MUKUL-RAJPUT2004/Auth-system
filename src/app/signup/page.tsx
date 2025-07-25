@@ -6,6 +6,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 
+
 export default function SignUpPage() {
     const router = useRouter();
     const [user, setUser] = React.useState({
@@ -45,46 +46,46 @@ export default function SignUpPage() {
     },[user])
 
     return(
-        <div className="flex flex-col items-center justify-center min-h-screen py-2">
+     
+        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen py-2">
           <h1 className="text-5xl font-bold flex ">{loading? "Processing": "SignUp"}</h1>
           <div className="h-20"></div>
           <hr />
           <label htmlFor="username">Username</label>
           <input
-          className="border border-gray-300 p-2 rounded-md mb-4"
+            className="border border-gray-300 p-2 rounded-md mb-4"
             type="text"
             id="username"
             value={user.username}
             onChange={(e) => setUser({ ...user, username: e.target.value })}
             placeholder="Enter your username"
           />
-
           <label htmlFor="email">Email</label>
           <input
-          className="border border-gray-300 p-2 rounded-md mb-4"
+            className="border border-gray-300 p-2 rounded-md mb-4"
             type="text"
             id="email"
             value={user.email}
             onChange={(e) => setUser({ ...user, email: e.target.value })}
             placeholder="Enter your email"
           />
-
           <label htmlFor="password">Password</label>
           <input
-          className="border border-gray-300 p-2 rounded-md mb-4"
+            className="border border-gray-300 p-2 rounded-md mb-4"
             type="text"
             id="password"
             value={user.password}
             onChange={(e) => setUser({ ...user, password: e.target.value })}
             placeholder="Enter your password"
           />
-
           <button
-          className="bg-blue-500 text-white p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
-          onClick={onSignup}>
+            className="bg-blue-500 text-white p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50"
+            onClick={onSignup}
+          >
             {buttonDisabled? "No signup":"SignUp"}
           </button>
           <Link href="/login" className="text-blue-500 hover:underline" >Visit Login Page</Link>
         </div>
+     
     )
 }
